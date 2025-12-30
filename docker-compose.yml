@@ -11,5 +11,14 @@ services:
     volumes:
       - mysql_projet:/var/lib/mysql
 
+  mongo:
+    image: mongo:7
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_projet:/data/db
+
 volumes:
   mysql_projet:
+  mongo_projet:
