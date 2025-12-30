@@ -8,6 +8,7 @@ import Read from './routes/sql/ReadUser.js';
 import Update from './routes/sql/UpdateUser.js';
 
 import CreateRecip from "./routes/mongo/CreateRecip.js";
+import ReadRecip from "./routes/mongo/ReadRecip.js";
 
 configDotenv();
 
@@ -22,6 +23,7 @@ app.use("/ReadUser", Read);
 app.use("/UpdateUser", Update);
 
 app.use("/CreateRecip", CreateRecip);
+app.use("/ReadRecip", ReadRecip);
 
 app.get('/test', (req, res) => {
     res.send('Hello, World!');
