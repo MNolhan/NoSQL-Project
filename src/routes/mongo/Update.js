@@ -2,6 +2,7 @@ import express from "express";
 import { z } from "zod";
 import { ObjectId } from "mongodb";
 import { getRecipesCollection } from "../../db/mongo.js";
+import auth from "../../middleware/auth.js";
 
 const router = express.Router();
 
@@ -12,9 +13,9 @@ const UpdateSchema = z.object({
     duration: z.number().int().positive().optional(),
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", auth, async (req, res) => {
+    
     try {
-  
         const data = UpdateSchema.parse(req.body);
 
         if (Object.keys(data).length === 0) {

@@ -3,21 +3,21 @@ import "dotenv/config";
 
 export default function auth(req, res, next) {
 
-  const authHeader = req.headers.authorization;
+    try {
+        const authHeader = req.headers.authorization;
+    
+        const token = authHeader.slice(7);
 
-  if (!authHeader.startsWith("Bearer ")) {
-    return res.status(401).json({ message: "Vous devez être connecté" });
-  }
+        try {
+            const payload = jwt.verify(token, process.env.jwtKey);
+            req.user = payload;
+            next();
 
-  const token = authHeader.slice(7);
+        } catch (err) {
+            return res.status(401).json({ message: "Token invalide ou expiré" });
+        }
 
-  try {
-
-    const payload = jwt.verify(token, process.env.jwtKey);
-    req.user = payload;
-    next();
-
-  } catch (err) {
-    return res.status(401).json({ message: "Token invalide ou expiré" });
-  }
+    } catch (err) {
+        return res.status(401).json({ message: "Authentification requise" });
+    }
 }

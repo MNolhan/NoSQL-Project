@@ -17,9 +17,10 @@ const pool = mysql.createPool({
 
 router.delete("/", async (req, res) => {
 
-    const token = req.headers.authorization?.split(" ")[1];
-
     try {
+
+        const token = req.headers.authorization?.split(" ")[1];
+
         if (!token) {
             res.status(401);
             res.json({ message: "Token manquant" });

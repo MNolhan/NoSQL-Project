@@ -18,6 +18,7 @@ configDotenv();
 const PORT = process.env.PORT;
 const app = express();
 
+app.use(express.json());
 app.use("/CreateUser", Create);
 app.use("/Login", Login);
 app.use("/DeleteUser", Delete);

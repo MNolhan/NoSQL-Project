@@ -33,9 +33,9 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
 
-    const token = req.headers.authorization.split(" ")[1];
-
     try {
+
+        const token = req.headers.authorization.split(" ")[1];
 
         if (!token) {
         res.status(401);

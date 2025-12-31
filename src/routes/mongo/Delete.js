@@ -1,10 +1,11 @@
 import express from "express";
 import { ObjectId } from "mongodb";
 import { getRecipesCollection } from "../../db/mongo.js";
+import auth from "../../middleware/auth.js";
 
 const router = express.Router();
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
     
     try {
         const col = await getRecipesCollection();

@@ -1,6 +1,7 @@
 import express from "express";
 import { z } from "zod";
 import { getRecipesCollection } from "../../db/mongo.js";
+import auth from "../../middleware/auth.js";
 
 const router = express.Router();
 
@@ -11,7 +12,7 @@ const RecipeSchema = z.object({
     duration: z.number().int().positive(),
 });
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
 
     const data = RecipeSchema.parse(req.body);
 

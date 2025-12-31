@@ -24,9 +24,9 @@ const MdpSchema = z.object({
 
 router.patch("/", async (req, res) => {
 
-    const token = req.headers.authorization.split(" ")[1];
-
     try {
+
+        const token = req.headers.authorization.split(" ")[1];
 
         const data = MdpSchema.parse(req.body);
         const oldpassword = data.oldpassword;
