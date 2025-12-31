@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
         ...data,
         createdAt: new Date(),
         });
-
+        
         res.status(201).json({ message: "Recette créée", id: result.insertedId });
 
     } catch (err) {
