@@ -1,4 +1,6 @@
 import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { configDotenv } from 'dotenv';
 
 import Create from './routes/sql/CreateUser.js';
@@ -16,8 +18,11 @@ configDotenv();
 
 const PORT = process.env.PORT;
 const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
 app.use("/CreateUser", Create);
 app.use("/Login", Login);
 app.use("/DeleteUser", Delete);
@@ -36,4 +41,3 @@ app.get('/test', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
-
