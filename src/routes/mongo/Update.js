@@ -14,6 +14,13 @@ const UpdateSchema = z.object({
     duration: z.number().int().positive().optional(),
 });
 
+// Fonction pour liker une recette
+await redisClient.zIncrBy(
+    "ranking:recipes",
+    1,
+    recipeId
+);
+
 router.put("/:id", auth, async (req, res) => {
     
     try {
