@@ -3,6 +3,7 @@ import { z } from "zod";
 import { ObjectId } from "mongodb";
 import { getRecipesCollection } from "../../db/mongo.js";
 import auth from "../../middleware/auth.js";
+import redisClient from "../redis/redisClient.js";
 
 const router = express.Router();
 
@@ -40,6 +41,8 @@ router.put("/:id", auth, async (req, res) => {
         res.json({
             message: "Recette mise à jour avec succès",
         });
+
+        await redisClient.del("recipes:all");
     
     } catch (err) {
         res.status(400).json({

@@ -3,6 +3,7 @@ version: "3.9"
 services:
   mysql:
     image: mysql:8.0
+    container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: appdb
@@ -19,6 +20,16 @@ services:
     volumes:
       - mongo_projet:/data/db
 
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_projet:/data
+    command: redis-server --appendonly yes
+
 volumes:
   mysql_projet:
   mongo_projet:
+  redis_projet:

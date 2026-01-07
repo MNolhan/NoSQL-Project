@@ -13,6 +13,8 @@ import ReadRecip from "./routes/mongo/ReadRecip.js";
 import UpdateRecip from "./routes/mongo/Update.js";
 import DeleteRecip from "./routes/mongo/Delete.js";
 
+import rateLimiter from './routes/redis/RateLimit.js';
+
 configDotenv();
 
 const PORT = process.env.PORT;
@@ -29,6 +31,8 @@ app.use("/CreateRecip", CreateRecip);
 app.use("/ReadRecip", ReadRecip);
 app.use("/UpdateRecip", UpdateRecip);
 app.use("/DeleteRecip", DeleteRecip);
+
+app.use(rateLimiter);
 
 app.get('/test', (req, res) => {
     res.send('Hello, World!');
