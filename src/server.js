@@ -13,12 +13,18 @@ import ReadRecip from "./routes/mongo/ReadRecip.js";
 import UpdateRecip from "./routes/mongo/Update.js";
 import DeleteRecip from "./routes/mongo/Delete.js";
 
+import { ensureRedisConnected } from "./routes/redis/RedisClient.js"; 
+
+
 configDotenv();
 
 const PORT = process.env.PORT;
 const app = express();
 
 app.use(express.json());
+
+await ensureRedisConnected();
+
 app.use("/CreateUser", Create);
 app.use("/Login", Login);
 app.use("/DeleteUser", Delete);
