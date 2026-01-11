@@ -1,5 +1,5 @@
 import express from "express";
-import redisClient from "../../redis/redisClient.js";
+import redisClient from "../redis/redisClient.js";
 import { getRecipesCollection } from "../../db/mongo.js";
 
 const router = express.Router();
