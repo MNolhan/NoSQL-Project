@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/server.js",
     "seed-mongo": "node scripts/seed.mongodb.js",
-    "seed-sql": "node scripts/seed.sql.js"
+    "seed-sql": "node scripts/seed.mysql.js"
   },
   "repository": {
     "type": "git",

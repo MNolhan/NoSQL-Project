@@ -1,5 +1,8 @@
 const mysql = require('mysql2/promise');
 const bcrypt = require('bcrypt');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 async function seedUsers() {
     const pool = mysql.createPool({

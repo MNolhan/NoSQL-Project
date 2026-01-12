@@ -1,4 +1,7 @@
 const { MongoClient } = require('mongodb');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 async function seedRecipes() {
     const uri = process.env.MONGO_URI;
