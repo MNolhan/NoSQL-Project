@@ -2,6 +2,7 @@ import express from "express";
 import { z } from "zod";
 import { getRecipesCollection } from "../../db/mongo.js";
 import auth from "../../middleware/auth.js";
+import redisClient from "../redis/RedisClient.js";
 
 const router = express.Router();
 
@@ -23,6 +24,8 @@ router.post("/", auth, async (req, res) => {
         ...data,
         createdAt: new Date(),
         });
+
+        await redisClient.del("recipes:all");
         
         res.status(201).json({ message: "Recette créée", id: result.insertedId });
 
